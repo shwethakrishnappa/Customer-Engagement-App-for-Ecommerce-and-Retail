@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Loyalty_Programs</fullName>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Loyalty_Points_Earned__c</columns>
+    <columns>Points_Used__c</columns>
+    <columns>Points_Balance__c</columns>
+    <columns>Program_Status__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>Expiry_Date__c</columns>
+    <filterScope>Mine</filterScope>
+    <label>Loyalty Programs</label>
+</ListView>

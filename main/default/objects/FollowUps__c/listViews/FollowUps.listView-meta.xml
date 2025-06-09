@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FollowUps</fullName>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>FollowUp_Type__c</columns>
+    <columns>FollowUp_Status__c</columns>
+    <columns>FollowUp_Medium__c</columns>
+    <columns>FollowUp_Date__c</columns>
+    <columns>Assigned_To__c</columns>
+    <filterScope>Mine</filterScope>
+    <label>FollowUps</label>
+</ListView>

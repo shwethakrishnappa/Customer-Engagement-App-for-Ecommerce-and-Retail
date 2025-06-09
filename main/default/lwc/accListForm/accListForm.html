@@ -1,0 +1,20 @@
+<template>
+    <lightning-card title="Account List">
+        <lightning-button label="Display" onclick={DisplayAccount}></lightning-button>
+
+        <template if:true={isAcclistPresent}>
+            <template for:each={acclist} for:item="acc">
+                <div key={acc.Id} class="slds-p-around_small">
+                    <p>{acc.Name}</p>
+                    <p>{acc.Phone}</p>
+                    <p>{acc.AccountNumber}</p>
+                    <p>{acc.AnnualRevenue}</p>
+                </div>
+            </template>
+        </template>
+
+        <div class="slds-p-around_large"></div>
+    </lightning-card>
+
+
+</template>

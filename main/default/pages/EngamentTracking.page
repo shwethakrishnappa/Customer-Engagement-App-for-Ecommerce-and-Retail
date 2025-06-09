@@ -1,0 +1,126 @@
+<apex:page standardController="Account" extensions="allPurchurseHistory" applyHtmlTag="false" showHeader="false"  renderAs="PDF">
+    <html>
+        <style>
+      
+            * {
+                box-sizing: border-box;
+              }
+		.box--half {
+            width: 100%;
+            margin: 20px auto;
+            font-family: Arial, sans-serif;
+              }
+      
+                .heading {
+                font-weight: bold;
+                }
+                
+               .heading--main {
+                font-size: 36px;
+                }
+                
+            .heading--sub {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+    
+                .box--half {
+                float: left;
+                width: 100%;
+            margin-top: 22px;
+                }
+                
+                .box--full {
+                float: left;
+                width: 100%;
+                }
+            
+              table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+                 th, td {
+             color: #ADD8E6 !important;
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+  th {
+        background-color: #f2f2f2;
+        color: #ADD8E6 !important; /* Change heading text color */
+        font-weight: bold;
+        padding: 8px;
+        text-align: center;
+    }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #ffffff;
+        }
+
+        td {
+            font-size: 14px;
+        }
+
+        td:nth-child(2) {
+            font-weight: bold;
+        }
+
+        </style>
+        <body>
+            <center>
+            	<h1 class="heading heading--main">Purchase Orders</h1>
+            </center>
+            
+            <div class="slds-grid slds-gutters">
+ 			 <div class="slds-col">
+    <h2 class="heading heading--sub">Billed to:</h2>
+                {!accObj.Name} <br/>
+                {!accObj.Type_of_Customer__c}<br/>
+                {!accObj.Business_Email__c}
+                {!accObj.PersonEmail}<br/>
+                {!accObj.BillingCity}&nbsp;{!accObj.BillingState}<br/>
+                {!accObj.BillingCountry}&nbsp;{!accObj.BillingPostalCode}
+  </div>
+  <div class="slds-col">
+     <h2 class="heading heading--sub">Order detail Generated:</h2>
+                    <bold>Date:{!currentDateTime}</bold> 
+  </div>
+</div>
+            
+            
+                       <div class="box--half">
+                <h2 class="heading heading--sub">Order Details:</h2>
+                <table align="center">
+                    <tr>
+                        <th style="color:#1E90FF;">Purchase ID</th>
+                        <th style="color:#1E90FF;">Product</th>
+                        <th style="color:#1E90FF;">Order Amount</th>
+                        <th style="color:#1E90FF;">Points Used</th>
+                        <th style="color:#1E90FF;">Redeem Points</th>
+                        <th style="color:#1E90FF;">Total Amount</th>
+                    </tr>
+                    <apex:repeat value="{!purchaseList}" var="orderData">
+                        <tr style="background-color:#d3d3d3" class="data-row"  >
+                            <td>{!orderData.Name}</td>
+                            <td>{!orderData.List_Of_Products__c}</td>
+                            <td>{!orderData.Order_Amount__c}</td>
+                            <td>{!orderData.Loyalty_Points_Used__c}</td>
+                            <td>{!orderData.Redeem_Points__c}</td>
+                            <td>{!orderData.Total_Amount__c}</td>
+
+                            
+                        </tr>
+                    </apex:repeat>
+                </table>
+            </div>
+        </body>
+    </html>
+
+    
+</apex:page>

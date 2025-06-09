@@ -1,0 +1,80 @@
+<template>
+    <lightning-card title="Customer Interaction Tracking">
+        <!-- Button to trigger Apex call -->
+        <lightning-button
+            label="Display Purchases"
+            onclick={getPurchaseEvent}
+            class="slds-m-around_small">
+        </lightning-button>
+
+        <lightning-button
+        label="Engagement History"
+        onclick={getEngmentEvent}
+        class="slds-m-around_small">
+    </lightning-button>
+
+    <lightning-button
+    label="Loyalty Points"
+    onclick={getLoyaltyEvent}
+    class="slds-m-around_small">
+</lightning-button>
+
+  
+
+        <!-- Conditional rendering of purchases -->
+        <template if:true={isPurchlistPresent} >
+            <h3>Purchase Historty</h3>
+            <template for:each={purList} for:item="pur">
+                <div key={pur.Id} class="slds-box slds-box_xx-small slds-m-around_small">
+                    <p><strong>Name:</strong> {pur.Name}</p>
+                    <p><strong>Products:</strong> {pur.List_Of_Products__c}</p>
+                    <p><strong>Total Items:</strong> {pur.Total_Items__c}</p>
+                    <p><strong>Order Amount:</strong> {pur.Order_Amount__c}</p>
+                    <p><strong>Created Date:</strong> {pur.CreatedDate}</p>
+                </div>
+            </template>
+        </template>
+
+        <!-- Conditional rendering of Engament Historty -->
+        <template if:true={isEnglistPresent} >
+            <h3>Engagement History</h3>
+            <template for:each={engList} for:item="eng">
+                <div key={eng.Id} class="slds-box slds-box_xx-small slds-m-around_small">
+                   
+                    <p><strong>Name:</strong> {eng.Name}</p>
+                    <p><strong>Medium:</strong> {eng.Medium__c}</p>
+                    <p><strong>Created Date:</strong> {eng.CreatedDate}</p>
+                </div>
+            </template>
+        </template>
+
+        <!-- Conditional rendering of Loyalty Program -->
+        <template if:true={isLoyaltylistPresent} >
+            <h3>Loyalty Program</h3>
+            <template for:each={loyaltyList} for:item="loyalty">
+                <div key={loyalty.Id} class="slds-box slds-box_xx-small slds-m-around_small">
+                   
+                    <p><strong>Name:</strong> {loyalty.Name}</p>
+                    <p><strong>Loyalty Points Earned :</strong> {loyalty.Loyalty_Points_Earned__c}</p>
+                    <p><strong>Loyalty Points Balance:</strong> {loyalty.Points_Balance__c}</p>
+                    <p><strong>Loyalty Points Used :</strong> {loyalty.Points_Used__c}</p>
+                    <p><strong>Status :</strong> {loyalty.Program_Status__c}</p>
+                    <p><strong>Expiry Date :</strong> {loyalty.Expiry_Date__c}</p>
+                </div>
+            </template>
+        </template>
+
+        <!-- Show message if no data -->
+        <template if:false={isPurchlistPresent}>
+            <p class="slds-p-horizontal_small slds-text-color_weak">No purchase records to display.</p>
+        </template>
+
+        <template if:false={isEnglistPresent}>
+            <p class="slds-p-horizontal_small slds-text-color_weak">No Engagement records to display.</p>
+        </template>
+
+        <template if:false={isLoyaltylistPresent}>
+            <p class="slds-p-horizontal_small slds-text-color_weak">No Loylaty records to display.</p>
+        </template>
+    </lightning-card>
+</template>

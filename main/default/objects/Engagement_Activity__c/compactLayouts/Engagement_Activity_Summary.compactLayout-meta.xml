@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Engagement_Activity_Summary</fullName>
+    <fields>Name</fields>
+    <fields>Account__c</fields>
+    <fields>Engagement_Score__c</fields>
+    <fields>Target_Audience__c</fields>
+    <label>Engagement Activity Summary</label>
+</CompactLayout>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Engagement_Activities</fullName>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Campaign_Type__c</columns>
+    <columns>Campaign_Name__c</columns>
+    <columns>Engagement_Score__c</columns>
+    <columns>Engagement_Type__c</columns>
+    <columns>Promotion_Name__c</columns>
+    <columns>Target_Audience__c</columns>
+    <filterScope>Mine</filterScope>
+    <label>Engagement Activities</label>
+</ListView>

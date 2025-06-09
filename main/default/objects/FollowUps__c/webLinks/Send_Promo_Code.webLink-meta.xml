@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Send_Promo_Code</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>Send Promo Code</masterLabel>
+    <openType>replace</openType>
+    <protected>false</protected>
+    <url>/flow/Send_Promo_Code_for_New_Products_launch_on_FollowUp?recordId={!FollowUps__c.Id}&amp;retURL=/{!FollowUps__c.Id}</url>
+</WebLink>

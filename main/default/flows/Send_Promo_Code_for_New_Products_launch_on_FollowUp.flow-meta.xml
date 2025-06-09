@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>New_Product</name>
+        <label>New Product</label>
+        <locationX>178</locationX>
+        <locationY>454</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>get_Accounts.PersonEmail</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <stringValue>Introducing Our New Product – Enjoy 15% OFF</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>NewProductEmailTemplate</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>emailSimple</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>New_Product_0</name>
+        <label>New Product</label>
+        <locationX>765</locationX>
+        <locationY>477</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>get_Accounts.Business_Email__c</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <stringValue>Introducing Our New Product – Enjoy 15% OFF</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>NewProductEmailTemplate</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>emailSimple</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <apiVersion>63.0</apiVersion>
+    <decisions>
+        <name>Check_Business_and_Personal_Account</name>
+        <label>Check Business and Personal Account</label>
+        <locationX>419</locationX>
+        <locationY>381</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Business_Account</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>get_Accounts.Type_of_Customer__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Retail</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>New_Product_0</targetReference>
+            </connector>
+            <label>Business Account</label>
+        </rules>
+        <rules>
+            <name>Personal_Account</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>get_Accounts.Type_of_Customer__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>E_Commerce</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>New_Product</targetReference>
+            </connector>
+            <label>Personal Account</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <interviewLabel>Send Promo Code for New Products launch on FollowUp {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Send Promo Code for New Products launch on FollowUp</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>get_Accounts</name>
+        <label>get Accounts</label>
+        <locationX>579</locationX>
+        <locationY>324</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Check_Business_and_Personal_Account</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>getFollowUpRecords.Account__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Account</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>getFollowUpRecords</name>
+        <label>getFollowUpRecords</label>
+        <locationX>576</locationX>
+        <locationY>182</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>get_Accounts</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordID</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>FollowUps__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>449</locationX>
+        <locationY>48</locationY>
+        <connector>
+            <targetReference>getFollowUpRecords</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <name>NewProductEmailTemplate</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Hi {!get_Accounts.Name},
+
+We’re excited to introduce our latest product – designed to bring you even more value and performance!
+
+To celebrate the launch, we’re offering 15% OFF exclusively for you.
+Just use the promo code NEW15 at checkout.
+
+✨ Don’t miss out – this special offer is valid for a limited time!
+
+
+
+Thank you for being a valued customer,
+Customer Support Team</text>
+    </textTemplates>
+    <variables>
+        <name>recordID</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

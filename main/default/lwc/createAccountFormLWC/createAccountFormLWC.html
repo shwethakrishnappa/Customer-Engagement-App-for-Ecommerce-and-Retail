@@ -1,0 +1,15 @@
+<template>
+    <lightning-card title="Creation of Account">
+        <div class="slds-p-around_large">
+            <lightning-input label="Account Name" name="Name" onchange={handleChange}></lightning-input>
+            <lightning-input label="Phone" name="Phone" onchange={handleChange}></lightning-input>
+            <lightning-input label="Email" name="Business_Email__c" onchange={handleChange}></lightning-input>
+            <lightning-input label="GST Number" name="GST_Number__c" onchange={handleChange}></lightning-input>
+            <lightning-input label="Website" name="Website" onchange={handleChange}></lightning-input>
+            <lightning-input label="Type of Customer" name="Type_of_Customer__c" onchange={handleChange}></lightning-input>
+            <lightning-input label="Person Email" name="PersonEmail" onchange={handleChange}></lightning-input>
+
+            <lightning-button variant="brand" label="Create" onclick={createAccountRecord}></lightning-button>
+        </div>
+    </lightning-card>
+</template>

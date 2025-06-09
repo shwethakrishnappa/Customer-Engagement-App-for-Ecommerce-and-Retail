@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NoPoints_then_No_Redeem</fullName>
+    <active>true</active>
+    <errorConditionFormula>And( Account__r.Loyalty_Points_Earned__c = 0.00, Redeem_Points__c =True)</errorConditionFormula>
+    <errorDisplayField>Redeem_Points__c</errorDisplayField>
+    <errorMessage>Points not available to Redeem</errorMessage>
+</ValidationRule>
